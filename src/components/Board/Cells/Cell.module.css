@@ -5,8 +5,8 @@
 	cursor:pointer;
 	
 }
-.cell + p{
-	position:absolute;
-	top:50%;
-	bottom:50%;
+.cell > *{
+	display:inline;
+	position:relative;
+	top:40%;
 }
