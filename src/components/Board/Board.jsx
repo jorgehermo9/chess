@@ -13,14 +13,17 @@ function Board(){
 				setSelected(target);
 			}
 		}else{
-			setBoard(prev =>{
-				const newBoard = prev;
-				const selectedCell = selected.j+selected.i*prev.n;
-				const targetCell = target.j+target.i*prev.n;
-				newBoard.cells[targetCell].piece = prev.cells[selectedCell].piece;
-				newBoard.cells[selectedCell].piece = null;
-				return newBoard;
-			})
+			if(target.piece === null || 
+				target.piece.color !== selected.piece.color){
+				setBoard(prev =>{
+					const newBoard = prev;
+					const selectedCell = selected.j+selected.i*prev.n;
+					const targetCell = target.j+target.i*prev.n;
+					newBoard.cells[targetCell].piece = prev.cells[selectedCell].piece;
+					newBoard.cells[selectedCell].piece = null;
+					return newBoard;
+				});
+			}
 			setSelected(null);
 		}
 	}

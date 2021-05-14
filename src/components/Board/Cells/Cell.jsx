@@ -7,11 +7,14 @@ function Cell(props){
 	const cellStyle={
 		width: `${perc}%`,
 		height: `${perc}%`,
-		backgroundColor: white?"white":"black",
-		color:white?"black":"white",
+		backgroundColor: white?"#787878":"#2b2b2b",
 	}
 
 	const type = props.piece? props.piece.type:"";
+	const pieceStyle = props.piece?{
+		border:`medium solid ${props.piece.color==="white"?"white":"black"}`, 
+		color: props.piece.color==="white"?"white":"black"}
+		:null
 	console.log(cellStyle);
 	return(
 		<div className={styles.cell} 
@@ -20,7 +23,8 @@ function Cell(props){
 		onClick={
 			()=>props.onSelected({i:props.i,j:props.j,piece:props.piece})
 		}
-		><p>{type}</p>
+		><p style={pieceStyle}>
+			{type}</p>
 		</div>
 	)
 }
