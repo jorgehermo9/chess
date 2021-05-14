@@ -1,38 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import Cell from "./Cells/Cell";
 import styles from "./Board.module.css"
+import {createBoard} from "./boardUtils"
 
-function createCell(n,i,j){
-	return {n:n,i:i,j:j};
-}
-function setupBoard()
-function createBoard(n){
-	const board=[];
-	for(let i=0;i<n;i++){
-		for(let j =0;j<n;j++){
-			board.push(createCell(n,i,j));
-		}
-	}
-	return board;
-}
 
 function Board(){
 	const n =8;
-	const tableStyle = {};
-	const board = createTable(n);
+	const [board,setBoard] = useState(createBoard(n));
 	return (
-		<div 
-		className={styles.table}
-		style={tableStyle}>
-			{board.map(cell =>
-			 (<Cell
-			 n={cell.n}
-			 i={cell.i}
-			 j={cell.j}
-			 />))}
+		<div className={styles.board}>
+			{board.cells.map((cell,index) =>
+			<Cell 
+			key ={index}
+			n={board.n} 
+			i={cell.i} 
+			j={cell.j} 
+			piece={cell.piece}
+			/>)}
 		</div>
 	)
 }
 
 
-export default Table;
+export default Board;

@@ -1,4 +1,11 @@
 .cell{
 	background-color:darksalmon;
 	float:left;
+	text-align: center;
+	
+}
+.cell + p{
+	position:absolute;
+	top:50%;
+	bottom:50%;
 }
