@@ -3,18 +3,18 @@ import Cell from "./Cells/Cell";
 import styles from "./Table.module.css"
 
 
-function createTable(cells){
+function createTable(n){
 	const table=[];
-	const size = cells*cells;
+	const size = n*n;
 	for(let i=0;i<size;i++){
-		table.push(<Cell/>);
+		table.push(<Cell rowsize ={n}/>);
 	}
 	return table;
 }
 
 function Table(){
 	const n =8;
-	const tableStyle = {width: `${n * 70}px`,height: `${n*70}px`};
+	const tableStyle = {width: "600px",height: "600px"};
 	return (
 		<div style={tableStyle}>
 			{createTable(n)}
