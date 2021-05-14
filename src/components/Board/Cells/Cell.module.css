@@ -2,13 +2,14 @@
 	background-color:darksalmon;
 	float:left;
 	text-align: center;
-	cursor:pointer;
-	
+	cursor:pointer;	
 }
 .cell > *{
+	font-size:2vw;
+
 	display:inline;
 	user-select: none;
 	position:relative;
-	padding:10px;
-	top:40%;
+	padding:1vw;
+	top:2vw;
 }
