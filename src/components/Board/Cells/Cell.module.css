@@ -2,6 +2,7 @@
 	background-color:darksalmon;
 	float:left;
 	text-align: center;
+	cursor:pointer;
 	
 }
 .cell + p{

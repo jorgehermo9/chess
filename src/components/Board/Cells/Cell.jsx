@@ -17,7 +17,9 @@ function Cell(props){
 		<div className={styles.cell} 
 		style={cellStyle}
 		id={`cell${props.i}${props.j}`}
-		
+		onClick={
+			()=>props.onSelected({i:props.i,j:props.j,piece:props.piece})
+		}
 		><p>{type}</p>
 		</div>
 	)
