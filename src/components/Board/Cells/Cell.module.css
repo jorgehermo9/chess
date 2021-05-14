@@ -1,5 +1,4 @@
 .cell{
-	display:inline-block;
-	margin:0.7%;
 	background-color:darksalmon;
+	float:left;
 }

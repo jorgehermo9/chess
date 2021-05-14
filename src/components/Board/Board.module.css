@@ -1,0 +1,6 @@
+.table{
+	display: inline-block;
+	width: 55%;
+	height: 55%;
+	border: thick solid black;
+}

@@ -1,9 +1,9 @@
 import React from "react";
-import Table from "./Table/Table"
+import Board from "./Board/Board"
 
 function App(){
 	return(
-		<Table/>
+		<Board/>
 	);
 }
 
