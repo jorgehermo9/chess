@@ -1,5 +1,6 @@
 function createCell(i,j){
-	return {i:i,j:j,piece: null };
+	return {pos:{i:i,j:j}
+					,piece: null };
 }
 
 export function createBoard(n){
@@ -13,8 +14,8 @@ export function createBoard(n){
 	return settedBoard;
 }
 function setPiece(board,type,color,i,j){
-	const cell= board.cells[j + i*board.n]
-	cell.piece = {color:color,type:type}
+	const cell= board.cells[j + i*board.n];
+	cell.piece = {color:color,type:type};
 }
 function setupBoard(board){
 	const newBoard = board;
@@ -54,3 +55,48 @@ function setupBoard(board){
 
 	return newBoard;
 }
+
+function isValidMove(board,move){
+	return move.i >=0 && move.i < board.n && move.j >=0 && move.j<board.n;
+}
+function validMoves(board,color,moves){
+	return moves.filter(move =>{
+		const target = move.j+move.i*board.n;
+		return (
+			isValidMove(board,move) &&
+			(board.cells[target].piece ===null || board.cells[target].piece.color !== color)
+		);
+	})
+}
+function PawnMoves(board,{i,j},color){
+	const facing = color === "black"?1:-1
+	const moves =[];
+	const enemies = [{i:i+facing,j:j-1},{i:i+facing,j:j+1}];
+	let move = {i:i+facing,j:j};
+
+	enemies.forEach( enemy => {
+		if(isValidMove(board,enemy) && 
+		(board.cells[enemy.j + enemy.i*board.n].piece&&board.cells[enemy.j + enemy.i*board.n].piece.color!==color )){
+			moves.push(enemy);
+		}
+	})
+
+	if(isValidMove(board,move)&&(board.cells[move.j + move.i*board.n].piece===null)){
+			moves.push(move);
+		}
+	return validMoves(board,color,moves);
+}
+export function getMoves(board,{pos,piece}){
+	let moves= [];
+	switch (piece.type) {
+		case "P":
+			moves = PawnMoves(board,pos,piece.color);
+			break;
+	
+		default:
+			break;
+	}
+	return moves;
+}
+
+

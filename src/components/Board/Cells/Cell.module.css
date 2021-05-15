@@ -13,3 +13,7 @@
 	padding:1vw;
 	top:2vw;
 }
+
+.valid{
+	border: thick 10px rgb(36, 124, 36);
+}
