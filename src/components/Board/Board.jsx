@@ -4,22 +4,21 @@ import styles from "./Board.module.css"
 import {createBoard,getMoves} from "./boardUtils"
 
 
-function moveableTo(target,selected,moves){
-	return (moves.some(move => move.i === target.pos.i && move.j === target.pos.j) && 
-		(target.piece === null || target.piece.color !== selected.piece.color));
-}
 function Board(){
 	function handleClick(target){
 
 		if(selected === null){
 			if(target.piece !==null){
-				setSelected(target);
-				setMoves(getMoves(board,target));
-				console.log(getMoves(board,target));
+				const moves = getMoves(board,target);
+				if(moves.length >0){
+					setSelected(target);
+					setMoves(getMoves(board,target));
+					console.log(getMoves(board,target));
+				}
 			}
 		}else{
 			if(validMoves.some(move => move.i === target.pos.i && move.j === target.pos.j)){
-				
+
 				setBoard(prev =>{
 					const newBoard = prev;
 					const selectedCell = selected.pos.j+selected.pos.i*prev.n;

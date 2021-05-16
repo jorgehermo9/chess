@@ -9,9 +9,7 @@ function Cell(props){
 		height: `${perc}%`,
 		backgroundColor: white?"#787878":"#2b2b2b",
 	}
-	if(props.validMove){
-		cellStyle.backgroundColor = "#1c9c25";
-	}
+
 	const type = props.piece? props.piece.type:"";
 	const pieceStyle = props.piece?{
 		border:`medium solid ${props.piece.color==="white"?"white":"black"}`, 
@@ -25,9 +23,11 @@ function Cell(props){
 		onClick={
 			()=>props.onSelected({pos:props.pos,piece:props.piece})}
 			>
-				<p style={pieceStyle}>
+			<div className={props.validMove?styles.validMove:styles.notValidMove}>
+				<span className={styles.piece} style={pieceStyle}>
 					{type}
-				</p>
+				</span>
+				</div>
 		</div>
 	)
 }

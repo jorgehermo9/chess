@@ -68,11 +68,13 @@ function validMoves(board,color,moves){
 		);
 	})
 }
-function PawnMoves(board,{i,j},color){
-	const facing = color === "black"?1:-1
+function pawnMoves(board,{i,j},color){
+	const facing = color === "black"?1:-1;
+	const startVertical = color==="black"?1:6;
 	const moves =[];
 	const enemies = [{i:i+facing,j:j-1},{i:i+facing,j:j+1}];
 	let move = {i:i+facing,j:j};
+	let doublemove = {i:i+2*facing,j:j};
 
 	enemies.forEach( enemy => {
 		if(isValidMove(board,enemy) && 
@@ -83,6 +85,10 @@ function PawnMoves(board,{i,j},color){
 
 	if(isValidMove(board,move)&&(board.cells[move.j + move.i*board.n].piece===null)){
 			moves.push(move);
+			if(i ===startVertical && 
+				isValidMove(board,doublemove)&&(board.cells[doublemove.j + doublemove.i*board.n].piece===null)){
+				moves.push(doublemove);
+			}
 		}
 	return validMoves(board,color,moves);
 }
@@ -90,7 +96,7 @@ export function getMoves(board,{pos,piece}){
 	let moves= [];
 	switch (piece.type) {
 		case "P":
-			moves = PawnMoves(board,pos,piece.color);
+			moves = pawnMoves(board,pos,piece.color);
 			break;
 	
 		default:

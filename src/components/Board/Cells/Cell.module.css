@@ -1,19 +1,33 @@
 .cell{
-	background-color:darksalmon;
 	float:left;
-	text-align: center;
 	cursor:pointer;	
 }
-.cell > *{
-	font-size:2vw;
+.piece{
+	font-size:1.2rem;
 
-	display:inline;
 	user-select: none;
 	position:relative;
 	padding:1vw;
-	top:2vw;
+	top:35%;
 }
+.notValidMove{
+	height: 90%;
+	width: 90%;
+	text-align: center;
+	position: relative;
+	top:5%;
+	left:5%;
+}
+.validMove{
+	height: 90%;
+	width: 90%;
+	text-align: center;
+	position: relative;
 
-.valid{
-	border: thick 10px rgb(36, 124, 36);
+	border-radius: 50% 50%;
+	border: 4px solid rgb(27, 204, 27);
+	background-color: rgba(10, 136, 10, 0.335);
+	top:0;
+	left:0;
+
 }
