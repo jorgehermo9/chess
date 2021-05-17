@@ -1,4 +1,5 @@
 import React from "react";
+import Board from "../Board";
 import styles from "./Cell.module.css"
 
 function Cell(props){
@@ -18,7 +19,9 @@ function Cell(props){
 		color: props.piece.color==="white"?"white":"black"}
 		:null
 	return(
-		<div className={`${styles.cell}`}
+		<div 
+		key={props.pos.j+props.pos.i*props.n}
+		className={`${styles.cell}`}
 		style={cellStyle}
 		id={`cell${props.pos.i}${props.pos.j}`}
 		onClick={

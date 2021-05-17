@@ -13,7 +13,6 @@ function Board(props){
 				if(moves.length >0){
 					setSelected(target);
 					setMoves(getMoves(board,target));
-					console.log(getMoves(board,target));
 				}
 			}
 		}else{
