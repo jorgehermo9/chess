@@ -20,13 +20,13 @@ function Cell(props){
 		:null
 	return(
 		<div 
-		key={props.pos.j+props.pos.i*props.n}
-		className={`${styles.cell}`}
-		style={cellStyle}
-		id={`cell${props.pos.i}${props.pos.j}`}
-		onClick={
-			()=>props.onSelected({pos:props.pos,piece:props.piece})}
-			>
+			key={props.pos.j+props.pos.i*props.n}
+			className={`${styles.cell}`}
+			style={cellStyle}
+			id={`cell${props.pos.i}${props.pos.j}`}
+			onClick={
+				()=>props.onSelected({pos:props.pos,piece:props.piece})}
+		>
 			<div className={props.validMove?styles.validMove:styles.notValidMove}>
 				<span className={styles.piece} style={pieceStyle}>
 					{type}
