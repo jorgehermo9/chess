@@ -92,13 +92,97 @@ function pawnMoves(board,{i,j},color){
 		}
 	return validMoves(board,color,moves);
 }
+function knightMoves(board,{i,j},color){
+	const moves =[
+		{i:i+2,j:j-1},
+		{i:i+2,j:j+1},
+		{i:i-2,j:j-1},
+		{i:i-2,j:j+1},
+		{i:i+1,j:j-2},
+		{i:i-1,j:j-2},
+		{i:i+1,j:j+2},
+		{i:i-1,j:j+2}
+	];
+	return validMoves(board,color,moves);
+}
+function kingMoves(board,{i,j},color){
+	const moves = [
+		{i:i+1,j:j},
+		{i:i-1,j:j},
+		{i:i,j:j+1},
+		{i:i,j:j-1},
+		{i:i-1,j:j-1},
+		{i:i-1,j:j+1},
+		{i:i+1,j:j-1},
+		{i:i+1,j:j+1},
+	];
+	return validMoves(board,color,moves);
+}
+function expand(board,direction,starting){
+	let moves=[];
+	let count =1;
+	let cell = {i:starting.i + direction.i,j:starting.j+direction.j};
+	while(isValidMove(board,cell) && board.cells[cell.j+cell.i*board.n].piece ===null){
+		moves.push(cell);
+		count++;
+		cell = {i:starting.i+direction.i*count,j:starting.j+direction.j*count};
+	}
+	moves.push(cell)//Add last cell as target cell
+	return moves;
+}
+function queenMoves(board,starting,color){
+	let moves=[];
+	moves = [...moves,...expand(board,{i:1,j:0},starting)];
+	moves = [...moves,...expand(board,{i:-1,j:0},starting)];
+	moves = [...moves,...expand(board,{i:0,j:1},starting)];
+	moves = [...moves,...expand(board,{i:0,j:-1},starting)];
+
+	moves = [...moves,...expand(board,{i:-1,j:-1},starting)];
+	moves = [...moves,...expand(board,{i:-1,j:1},starting)];
+	moves = [...moves,...expand(board,{i:1,j:1},starting)];
+	moves = [...moves,...expand(board,{i:1,j:-1},starting)];
+	return validMoves(board,color,moves);
+}
+function bishopMoves(board,starting,color){
+	let moves = [];
+
+	moves = [...moves,...expand(board,{i:-1,j:-1},starting)];
+	moves = [...moves,...expand(board,{i:-1,j:1},starting)];
+	moves = [...moves,...expand(board,{i:1,j:1},starting)];
+	moves = [...moves,...expand(board,{i:1,j:-1},starting)];
+	return validMoves(board,color,moves);
+}
+
+function rookMoves(board,starting,color){
+	let moves =[];
+	moves = [...moves,...expand(board,{i:1,j:0},starting)];
+	moves = [...moves,...expand(board,{i:-1,j:0},starting)];
+	moves = [...moves,...expand(board,{i:0,j:1},starting)];
+	moves = [...moves,...expand(board,{i:0,j:-1},starting)];
+	return validMoves(board,color,moves);
+}
 export function getMoves(board,{pos,piece}){
 	let moves= [];
 	switch (piece.type) {
 		case "P":
 			moves = pawnMoves(board,pos,piece.color);
 			break;
-	
+		case "N":
+			moves = knightMoves(board,pos,piece.color);
+			break;
+		case "K":
+			moves = kingMoves(board,pos,piece.color);
+			break;
+		case "Q":
+			moves = queenMoves(board,pos,piece.color);
+			break;
+		case "B":
+			moves = bishopMoves(board,pos,piece.color);
+			break;
+		case "R":
+			moves = rookMoves(board,pos,piece.color);
+			break;
+			
 		default:
 			break;
 	}

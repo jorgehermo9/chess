@@ -1,6 +1,7 @@
 .board{
-	display: inline-block;
-	width: 50vw;
-	height: 50vw;
+	float:left;
+	display: block;
+	width: 50vmax;
+	height: 50vmax;
 	border: thick solid black;
 }

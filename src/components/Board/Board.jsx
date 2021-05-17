@@ -4,11 +4,11 @@ import styles from "./Board.module.css"
 import {createBoard,getMoves} from "./boardUtils"
 
 
-function Board(){
+function Board(props){
 	function handleClick(target){
 
 		if(selected === null){
-			if(target.piece !==null){
+			if(target.piece !==null && target.piece.color === turn){
 				const moves = getMoves(board,target);
 				if(moves.length >0){
 					setSelected(target);
@@ -27,6 +27,10 @@ function Board(){
 					newBoard.cells[selectedCell].piece = null;
 					return newBoard;
 				});
+				if(target.piece && target.piece.type==="K"){
+					props.setWon(turn);
+				}
+				setTurn(turn==="white"?"black":"white");
 			}
 			setSelected(null);
 			setMoves([]);
@@ -36,6 +40,9 @@ function Board(){
 	const [board,setBoard] = useState(createBoard(n));
 	const [selected,setSelected] = useState(null);
 	const [validMoves,setMoves] = useState([]);
+
+	let turn =props.turn;
+	const setTurn = props.setTurn;
 	return (
 		<div className={styles.board}>
 			{board.cells.map((cell,index) =>

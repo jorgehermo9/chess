@@ -3,12 +3,12 @@
 	cursor:pointer;	
 }
 .piece{
-	font-size:1.2rem;
+  font-size: calc(0.75rem + 1vmin );
 
 	user-select: none;
 	position:relative;
-	padding:1vw;
-	top:35%;
+	padding:15%;
+	top:28%;
 }
 .notValidMove{
 	height: 90%;
@@ -25,7 +25,7 @@
 	position: relative;
 
 	border-radius: 50% 50%;
-	border: 4px solid rgb(27, 204, 27);
+	border: 0.3vmax solid rgb(27, 204, 27);
 	background-color: rgba(10, 136, 10, 0.335);
 	top:0;
 	left:0;

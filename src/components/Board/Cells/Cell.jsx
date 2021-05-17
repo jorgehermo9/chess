@@ -12,10 +12,11 @@ function Cell(props){
 
 	const type = props.piece? props.piece.type:"";
 	const pieceStyle = props.piece?{
-		border:`medium solid ${props.piece.color==="white"?"white":"black"}`, 
+		borderColor: `${props.piece.color==="white"?"white":"black"}`,
+		borderWidth: "0.2vmax",
+		borderStyle: "solid",
 		color: props.piece.color==="white"?"white":"black"}
 		:null
-
 	return(
 		<div className={`${styles.cell}`}
 		style={cellStyle}
