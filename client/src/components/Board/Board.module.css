@@ -1,0 +1,10 @@
+.board{
+	float:left;
+	display: grid;
+	grid-template-columns: repeat(8,1fr);
+	grid-template-rows: repeat(8,1fr);
+
+	width: 50vmax;
+	height: 50vmax;
+	border: thick solid black;
+}
