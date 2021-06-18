@@ -1,33 +1,27 @@
 .cell{
-	float:left;
 	cursor:pointer;	
 }
 .piece{
-  font-size: calc(0.75rem + 1vmin );
+  font-size: calc(0.75rem + 1vmax );
 
 	user-select: none;
 	position:relative;
 	padding:15%;
-	top:28%;
+	top:33%;
+}
+
+.pieceContainer{
+	height: 90%;
+	width: 90%;
+	border-radius: 50% 50%;
+	text-align: center;
+
 }
 .notValidMove{
-	height: 90%;
-	width: 90%;
-	text-align: center;
-	position: relative;
-	top:5%;
-	left:5%;
+	border: 0.3vmax solid rgba(27, 204, 27, 0);
+	background-color: rgba(10, 136, 10, 0);
 }
 .validMove{
-	height: 90%;
-	width: 90%;
-	text-align: center;
-	position: relative;
-
-	border-radius: 50% 50%;
 	border: 0.3vmax solid rgb(27, 204, 27);
 	background-color: rgba(10, 136, 10, 0.335);
-	top:0;
-	left:0;
-
 }
