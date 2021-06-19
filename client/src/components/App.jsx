@@ -9,7 +9,7 @@ function App(){
 	const [myColor,setColor] = useState(null);
 	const [socket,setSocket] = useState(null);
 	useEffect(()=>{	
-		const clientSocket =io("http://localhost:3001");
+		const clientSocket =io("https://chess-io-mp.herokuapp.com/");
 		clientSocket.on("found",color => setColor(color));
 		setSocket(clientSocket);
 	},[])
