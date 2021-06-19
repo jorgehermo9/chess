@@ -1,1 +1,1 @@
-web: npm run server --prefix server
+web: nodemon /server/server.js
