@@ -19,7 +19,7 @@ function searchRival(socketId){
 const PORT = process.env.PORT || 3001;
 const queue= [];
 const games=[];
-app.use(express.static(__dirname+ "/client/build"));
+app.use("/static",express.static(__dirname+ "/client/build"));
 
 io.on("connection", socket => {
 	if(queue.length>0){
