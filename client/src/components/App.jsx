@@ -7,22 +7,25 @@ function App(){
 	const [turn,setTurn] = useState("white");
 	const [won,setWon] = useState("none");
 	const [myColor,setColor] = useState(null);
-	const [socket,setSocket]= useState(null);
-	useEffect(()=>{
-		async function setConnection(){
-			let s = await io("http://localhost:3001");
-			setSocket(s);
-			await s.on("found",color => setColor(color));
-		}
-		setConnection();
+	useEffect(()=>{	
+		const socket =io("http://localhost:3001");
+		socket.on("found",color => setColor(color));
+
 	},[])
+	console.log(myColor);
 	return(
 		won==="none"?
 			<div>
+				{myColor!==null?
+				<div>
 					<Board 
 						turn={turn} setTurn={setTurn}
 						won ={won} setWon={setWon}/>
 					<h1>Turn: {turn} myColor: {myColor}</h1>
+				</div>
+				:
+				<h1>Looking for match</h1>
+			}
 			</div>
 			:
 			<div>

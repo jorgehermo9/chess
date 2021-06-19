@@ -14,7 +14,8 @@ const games=[];
 app.use(express.static(__dirname+ "/../client/build"));
 
 io.on("connection", socket => {
-	if(queue.length>1){
+	
+	if(queue.length>0){
 		let rival1 = queue.pop();
 		let rival2 = socket
 		let rivalColor1 = Math.random() <0.5?"white":"black";
@@ -28,7 +29,14 @@ io.on("connection", socket => {
 		rival2.emit("found",rivalColor2);
 		console.log("emitted");
 	}else{
+		console.log("pushed socket: "+socket.id);
 		queue.push(socket);
 	}
+	socket.on("disconnect", () =>{
+		console.log("Disconnected socket: "+socket.id);
+		if(queue.indexOf(socket)>-1){
+			queue.splice(queue.indexOf(socket),1);
+		}
+	});
 })
 server.listen(PORT,() => console.log(`Server listening on port:${PORT}`));
