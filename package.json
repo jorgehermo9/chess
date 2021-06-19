@@ -1,0 +1,23 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"install-front":"cd client;npm install;cd ..",
+		"install-back": "cd server;npm install;cd ..",
+		"server": "cd server;npm run server",
+		"start-server":"npm run install-front;npm run install-back;npm run server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgehermo9/chess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgehermo9/chess/issues"
+  },
+  "homepage": "https://github.com/jorgehermo9/chess#readme"
+}
