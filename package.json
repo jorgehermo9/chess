@@ -10,22 +10,6 @@
 		"server": "cd server;npm run server",
 		"start-server":"npm run install-front;npm run install-back;npm run server"
   },
-	"dependencies": {
-    "@testing-library/jest-dom": "^5.12.0",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "css-loader": "^5.2.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "socket.io-client": "^4.1.2",
-    "web-vitals": "^1.1.2",
-		
-		"concurrently": "^6.2.0",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.7",
-    "socket.io": "^4.1.2"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jorgehermo9/chess.git"
