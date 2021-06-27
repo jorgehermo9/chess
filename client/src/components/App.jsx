@@ -4,17 +4,24 @@ import Board from "./Board/Board"
 
 
 function App(){
+	const reset = ()=>{
+		setWon("none");
+		setSocket(null);
+		setColor(null);
+	}
+	const api = "https://chess-io-mp.herokuapp.com/"
+	//const api = "localhost:3001"
+
 	const [turn,setTurn] = useState("white");
 	const [won,setWon] = useState("none");
 	const [myColor,setColor] = useState(null);
 	const [socket,setSocket] = useState(null);
-	useEffect(()=>{	
-		//const clientSocket =io("http://localhost:3001");
 
-		const clientSocket =io("https://chess-io-mp.herokuapp.com/");
+	if(socket===null){
+		const clientSocket =io(api);
 		clientSocket.on("found",color => setColor(color));
 		setSocket(clientSocket);
-	},[])
+	}
 	return(
 		won==="none"?
 			<div>
@@ -35,7 +42,7 @@ function App(){
 			:
 			<div>
 					<h1>{won} won! you were {myColor}</h1>
-					<button onClick={()=> setWon("none")}>Play again</button>
+					<button onClick={reset}>Play again</button>
 			</div>
 	);
 }

@@ -53,11 +53,15 @@ function Board(props){
 			setTurn(props.myColor);
 		})
 		props.socket.on("won", who => props.setWon(who));
-	},[])
 
+		//Set inverted board
+
+	},[])
+	let auxCells = props.myColor==="black"?board.cells.slice().reverse():board.cells;
+	console.log(auxCells);
 	return (
 		<div className={styles.board}>
-			{board.cells.map((cell,index) =>
+			{auxCells.map((cell,index) =>
 			<Cell 
 			key ={index}
 			n={board.n}
