@@ -214,7 +214,7 @@ export function getImage(piece){
 		default:
 			break;
 	}
-	let url = `/assets/chess/${piece.color}_${type}.png`;
+	let url = `/assets/chess/${piece.color}_${type}.svg`;
 	return url
 }
 

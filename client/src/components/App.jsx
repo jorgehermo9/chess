@@ -6,9 +6,13 @@ import Board from "./Board/Board"
 function App(){
 	const reset = ()=>{
 		setWon("none");
+		socket.close();
 		setSocket(null);
 		setColor(null);
+		setMsg(null);//Reset error message
 	}
+
+
 	//const api = "https://chess-io-mp.herokuapp.com/"
 	const api = "localhost:3001"
 
@@ -21,11 +25,10 @@ function App(){
 		const clientSocket =io(api);
 		clientSocket.on("found",color => {
 			setColor(color);
-			setMsg(null);//Reset error message
 		});
-		clientSocket.on("rival dc",()=>{
+		clientSocket.on("rival dc",winner=>{//If someone won, both socket are close in Board component
 			setMsg("Rival disconnected")
-			reset();
+			setWon(winner);
 		})
 		setSocket(clientSocket);
 	}
@@ -43,12 +46,12 @@ function App(){
 					<h1>Turn: {turn} myColor: {myColor}</h1>
 				</div>
 				:
-				<h1>{errMsg!==null && `${errMsg}. `}Looking for a match...</h1>
+				<h1>Looking for a match...</h1>
 			}
 			</div>
-			:
+		:
 			<div>
-					<h1>{won} won! you were {myColor}</h1>
+					<h1>{errMsg!==null && `${errMsg}. `}You {won === myColor?"won":"lost"}</h1>
 					<button onClick={reset}>Play again</button>
 			</div>
 	);

@@ -32,6 +32,7 @@ function Board(props){
 				});
 				if(target.piece && target.piece.type==="K"){
 					props.socket.emit("won",turn)
+					props.socket.close();
 					props.setWon(turn);
 				}
 				setTurn(inverse(turn));
@@ -52,10 +53,10 @@ function Board(props){
 			setBoard(board);
 			setTurn(props.myColor);
 		})
-		props.socket.on("won", who => props.setWon(who));
-
-		//Set inverted board
-
+		props.socket.on("won", who => {
+			props.socket.close();
+			props.setWon(who)}
+		);
 	})
 	let auxCells = props.myColor==="black"?board.cells.slice().reverse():board.cells;
 	return (

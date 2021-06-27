@@ -61,17 +61,18 @@ io.on("connection", socket => {
 		console.log("send move to"+rival.id);
 		rival.emit("move",board);
 	})
-	socket.on("won",who => {
-		let rival = searchRival(socket.id);
-		rival.emit("won",who);
-	})
+	socket.on("won",who => searchRival(socket.id).emit("won",who));
+
 	socket.on("disconnect", () =>{
 		console.log("Disconnected socket: "+socket.id);
 		if(searchGame(socket.id)!==null){//If socket is already in a game
-			searchRival(socket.id).emit("rival dc");
+			let game =searchGame(socket.id);
+			let winner = game.white.id ===socket.id?"black":"white";
+			searchRival(socket.id).emit("rival dc",winner);
 		}
 		clearSocket(socket);
-
+		console.log(`waiting: ${queue}`);
+		console.log(`games: ${games}`);
 	});
 })
 server.listen(PORT,() => console.log(`Server listening on port:${PORT}`));

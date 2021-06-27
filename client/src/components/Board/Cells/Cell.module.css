@@ -2,10 +2,8 @@
 	cursor:pointer;	
 }
 .piece{
-	width: 50%;
+	width: 90%;
 	user-select: none;
-	position:relative;
-	top:20%;
 }
 
 .pieceContainer{
