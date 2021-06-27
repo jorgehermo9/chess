@@ -56,9 +56,8 @@ function Board(props){
 
 		//Set inverted board
 
-	},[])
+	})
 	let auxCells = props.myColor==="black"?board.cells.slice().reverse():board.cells;
-	console.log(auxCells);
 	return (
 		<div className={styles.board}>
 			{auxCells.map((cell,index) =>

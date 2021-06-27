@@ -7,15 +7,26 @@ const io = require("socket.io")(server,{
 		origin: "*",
 	}
 });
-function searchRival(socketId){
+function searchGame(socketId){
 	let filtered = games.filter(item=> item.white.id === socketId || 
 		item.black.id === socketId);
 	if(filtered.length===0) return null;
 	let game = filtered[0];
+	return game;
+}
+function searchRival(socketId){
+	let game = searchGame(socketId);
 	let rival = socketId === game.white.id?game.black:game.white;
-
 	return rival;
 }
+function clearSocket(socket){
+	if(queue.indexOf(socket)>-1){
+		queue.splice(queue.indexOf(socket),1);
+	}else if(games.indexOf(searchGame(socket.id))>-1){
+		games.splice(games.indexOf(searchGame(socket.id)),1)
+	}
+}
+
 const PORT = process.env.PORT || 3001;
 const queue= [];
 const games=[];
@@ -35,11 +46,14 @@ io.on("connection", socket => {
 		rival1.emit("found",rivalColor1);
 		rival2.emit("found",rivalColor2);
 		console.log(`match between ${rival1.id} and ${rival2.id}`);
+
+
 	}else{
 		console.log("pushed socket: "+socket.id);
 		queue.push(socket);
 	}
-
+	console.log(`waiting: ${queue}`);
+	console.log(`games: ${games}`);
 
 	socket.on("move",board => {
 		let rival = searchRival(socket.id);
@@ -53,9 +67,11 @@ io.on("connection", socket => {
 	})
 	socket.on("disconnect", () =>{
 		console.log("Disconnected socket: "+socket.id);
-		if(queue.indexOf(socket)>-1){
-			queue.splice(queue.indexOf(socket),1);
+		if(searchGame(socket.id)!==null){//If socket is already in a game
+			searchRival(socket.id).emit("rival dc");
 		}
+		clearSocket(socket);
+
 	});
 })
 server.listen(PORT,() => console.log(`Server listening on port:${PORT}`));

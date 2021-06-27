@@ -189,4 +189,32 @@ export function getMoves(board,{pos,piece}){
 	return moves;
 }
 
+export function getImage(piece){
+	let type;
+	switch(piece.type){
+		case "P":
+			type = "pawn";
+			break;
+		case "N":
+			type = "knight";
+			break;
+		case "K":
+			type = "king";
+			break;
+		case "Q":
+			type = "queen";
+			break;
+		case "B":
+			type = "bishop";
+			break;
+		case "R":
+			type = "rook";
+			break;
+			
+		default:
+			break;
+	}
+	let url = `/assets/chess/${piece.color}_${type}.png`;
+	return url
+}
 

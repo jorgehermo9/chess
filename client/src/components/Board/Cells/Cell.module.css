@@ -2,12 +2,10 @@
 	cursor:pointer;	
 }
 .piece{
-  font-size: calc(0.75rem + 1vmax );
-
+	width: 50%;
 	user-select: none;
 	position:relative;
-	padding:15%;
-	top:33%;
+	top:20%;
 }
 
 .pieceContainer{
