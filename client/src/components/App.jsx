@@ -13,8 +13,8 @@ function App(){
 	}
 
 
-	//const api = "https://chess-io-mp.herokuapp.com/"
-	const api = "localhost:3001"
+	const api = "https://chess-io-mp.herokuapp.com/"
+	//const api = "localhost:3001"
 
 	const [turn,setTurn] = useState("white");
 	const [won,setWon] = useState("none");
