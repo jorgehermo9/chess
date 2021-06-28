@@ -46,8 +46,6 @@ io.on("connection", socket => {
 		rival1.emit("found",rivalColor1);
 		rival2.emit("found",rivalColor2);
 		console.log(`match between ${rival1.id} and ${rival2.id}`);
-
-
 	}else{
 		console.log("pushed socket: "+socket.id);
 		queue.push(socket);
