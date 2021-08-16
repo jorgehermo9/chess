@@ -7,6 +7,8 @@ const io = require("socket.io")(server,{
 		origin: "*",
 	}
 });
+const dotenv = require("dotenv").config();
+
 function searchGame(socketId){
 	let filtered = games.filter(item=> item.white.id === socketId || 
 		item.black.id === socketId);
